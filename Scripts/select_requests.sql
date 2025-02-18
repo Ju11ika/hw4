@@ -6,7 +6,7 @@ LIMIT 1;
 
 SELECT song_name 
 FROM Song 
-WHERE song_duration >= 210;  -- 3.5 минуты = 210 секунд
+WHERE song_duration >= 210;  
 
 
 SELECT collection_name 
@@ -41,10 +41,15 @@ WHERE Album.album_release_year BETWEEN 2019 AND 2020;
 
 
 SELECT DISTINCT Artist.artist_name 
-FROM Artist
-LEFT JOIN ArtistAlbum ON Artist.artist_id = ArtistAlbum.artist_id 
-LEFT JOIN Album ON ArtistAlbum.album_id = Album.album_id 
-WHERE Album.album_release_year <> 2020 OR Album.album_release_year IS NULL;
+FROM Artist 
+WHERE Artist.artist_id NOT IN (
+    SELECT Artist.artist_id
+    FROM Artist
+    JOIN ArtistAlbum ON Artist.artist_id = ArtistAlbum.artist_id 
+    JOIN Album ON ArtistAlbum.album_id = Album.album_id 
+    WHERE Album.album_release_year = 2020
+);
+
 
 
 SELECT DISTINCT Collection.collection_name 
