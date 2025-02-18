@@ -24,8 +24,7 @@ FROM Song
 WHERE (LOWER(song_name) ILIKE 'мой %' OR LOWER(song_name) ILIKE 'my %')
 OR (LOWER(song_name) ILIKE '% мой' OR LOWER(song_name) ILIKE '% my')
 OR (LOWER(song_name) ILIKE '% мой %' OR LOWER(song_name) ILIKE '% my %')
-OR (LOWER(song_name) ILIKE 'мой' OR LOWER(song_name) ILIKE 'my')
-;
+OR (LOWER(song_name) ILIKE 'мой' OR LOWER(song_name) ILIKE 'my');
 
 
 SELECT Genre.genre_name, COUNT(ArtistGenre.artist_id) AS artist_count 
